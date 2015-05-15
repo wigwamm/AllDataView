@@ -1,0 +1,71 @@
+<html>
+
+<head>
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script src='/jquery.js'></script>
+  <style>
+    .col {
+      width: 300px;
+      display: inline-block;
+    }
+
+    .codes {
+      width: auto;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class='codes'>
+    {{#each outcodes}}
+    <div class='col' id='{{outcode}}'>
+      <span class='header'>{{outcode}}</span>
+      <div class='ranges'>
+        <input type='radio' name='{{outcode}}_range' id='{{outcode}}_range_0' />
+        <label for='{{outcode}}_range_0'>{{ranges[0].price.min}} - {{ranges[0].price.max}}</label><br />
+        <input type='radio' name='{{outcode}}_range' id='{{outcode}}_range_1' />
+        <label for='{{outcode}}_range_1'>{{ranges[1].price.min}} - {{ranges[1].price.max}}</label><br />
+        <input type='radio' name='{{outcode}}_range' id='{{outcode}}_range_2' />
+        <label for='{{outcode}}_range_2'>{{ranges[2].price.min}} - {{ranges[2].price.max}}</label><br />
+        <input type='radio' name='{{outcode}}_range' id='{{outcode}}_range_3' />
+        <label for='{{outcode}}_range_3'>{{ranges[3].price.min}} - {{ranges[3].price.max}}</label>
+      </div>
+      <hr />
+      <div class='categories'>
+        <input type='radio' name='{{outcode}}_cat' id='{{outcode}}_cat_0' />
+        <label for='{{outcode}}_cat_0'>Outside Space</label><br />
+        <input type='radio' name='{{outcode}}_cat' id='{{outcode}}_cat_1' />
+        <label for='{{outcode}}_cat_1'>Parking</label><br />
+        <input type='radio' name='{{outcode}}_cat' id='{{outcode}}_cat_2' />
+        <label for='{{outcode}}_cat_2'>More Space</label><br />
+        <input type='radio' name='{{outcode}}_cat' id='{{outcode}}_cat_3' />
+        <label for='{{outcode}}_cat_3'>Needs Work</label>
+      </div>
+
+      <div class='properties'>
+        {{#each properties}}
+          <div class='property'>
+            {{address}}<br />
+            {{summary}}
+            <hr />
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</body>
+
+<script>
+  $('input[type=radio]').on('change', function(e){
+    var outcode = $(e.target).closest('.col').attr('id');
+
+
+  });
+</script>
+
+</html>
