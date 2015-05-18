@@ -1,5 +1,5 @@
 var app = require('express')();
-var db = require('mongojs').connect('wigwamm', ['outcodes', 'rightMoveProps']);
+var db = require('mongojs').connect('wigwamm', ['outcodes', 'rightmoveProps']);
 var Load = require('ractive-load');
 var moment = require('moment');
 var async = require('async');
@@ -16,11 +16,10 @@ app.get('/', function(req, res) {
       outcodes.forEach(function(value){
         outs[value.outcode] = value;
       });
-      db.rightMoveProps.aggregate([{$group:{_id:'$outcode', count:{$sum:1}}}], function(err, counts){
+      db.rightmoveProps.aggregate([{$group:{_id:'$outcode', count:{$sum:1}}}], function(err, counts){
         counts.forEach(function(count){
           outs[count._id] && (outs[count._id].count = count.count);
         });
-        console.log(Object.keys(outs).map(function(key){return outs[key]}))
         var ractive = new Component({
           data: {
             outcodes: Object.keys(outs).map(function(key){return outs[key]})
@@ -40,7 +39,7 @@ app.get('/properties/:area/:range/:category', function(req, res) {
   }, function(err, outcode) {
     var band = outcode.bands[req.params.range]||{};
     console.log(band)
-    db.rightMoveProps.find({
+    db.rightmoveProps.find({
       outcode: req.params.area,
       price: {
         $gte: band.min||0,
