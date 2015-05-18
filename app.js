@@ -12,12 +12,22 @@ app.use(require('body-parser').urlencoded({
 app.get('/', function(req, res) {
   Load('views/index.html').then(function(Component) {
     db.outcodes.find({}, function(err, outcodes) {
-      var ractive = new Component({
-        data: {
-          outcodes: outcodes
-        }
+      var outs = {};
+      outcodes.forEach(function(value){
+        outs[value.outcode] = value;
       });
-      res.send(ractive.toHTML());
+      db.rightMoveProps.aggregate([{$group:{_id:'$outcode', count:{$sum:1}}}], function(err, counts){
+        counts.forEach(function(count){
+          outs[count._id] && (outs[count._id].count = count.count);
+        });
+        console.log(Object.keys(outs).map(function(key){return outs[key]}))
+        var ractive = new Component({
+          data: {
+            outcodes: Object.keys(outs).map(function(key){return outs[key]})
+          }
+        });
+        res.send(ractive.toHTML());
+      });
     });
   }).catch(function(a, b) {
     console.log(a, b)

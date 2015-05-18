@@ -33,7 +33,7 @@
   <div class='codes'>
     {{#each outcodes}}
     <div class='col' id='{{outcode}}'>
-      <span class='header'>{{outcode}}</span>
+      <span class='header'>{{outcode}} - {{count||0}}</span>
       <div class='ranges'>
         {{#each bands}}
         <input type='radio' name='{{outcode}}_range' id='{{outcode}}_range_{{@index}}' data-range='{{@index}}' />
@@ -51,8 +51,8 @@
         <input type='radio' name='{{outcode}}_cat' id='{{outcode}}_cat_2' data-category='swimmingPool' />
         <label for='{{outcode}}_cat_2'>Swimming Pool</label>
         <br />
-        <input type='radio' name='{{outcode}}_cat' id='{{outcode}}_cat_2' data-category='unclassified' />
-        <label for='{{outcode}}_cat_2'>Unclassified</label>
+        <input type='radio' name='{{outcode}}_cat' id='{{outcode}}_cat_3' data-category='unclassified' />
+        <label for='{{outcode}}_cat_3'>Unclassified</label>
       </div>
       <hr />
       <div class='properties'>
