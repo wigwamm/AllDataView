@@ -28,7 +28,7 @@ app.get('/properties/:area/:range/:category', function(req, res) {
   db.outcodes.findOne({
     outcode: req.params.area
   }, function(err, outcode) {
-    var band = outcode.bands[req.params.range];
+    var band = outcode.bands[req.params.range]||{};
     console.log(band)
     db.rightMoveProps.find({
       outcode: req.params.area,
