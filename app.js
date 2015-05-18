@@ -45,7 +45,7 @@ app.get('/properties/:area/:range/:category', function(req, res) {
         $gte: band.min||0,
         $lte: band.max||Infinity
       },
-      tags: req.category=='unclassified'?null:req.params.category
+      tags: req.params.category=='unclassified'?null:req.params.category
     }, function(err, docs) {
       res.send(docs);
     })
