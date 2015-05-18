@@ -1,5 +1,5 @@
 var app = require('express')();
-var db = require('mongojs').connect('test', ['outcodes', 'rightMoveProps']);
+var db = require('mongojs').connect('wigwamm', ['outcodes', 'rightMoveProps']);
 var Load = require('ractive-load');
 var moment = require('moment');
 var async = require('async');
