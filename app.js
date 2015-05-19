@@ -1,5 +1,5 @@
 var app = require('express')();
-var db = require('mongojs').connect(require('../dbPath.json').url, ['outcodes', 'rightMoveProps']);
+var db = require('mongojs').connect(require('../dbPath.json').url, ['outcodes', 'rightmoveProps']);
 var Load = require('ractive-load');
 var moment = require('moment');
 var async = require('async');
