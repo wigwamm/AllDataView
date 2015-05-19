@@ -1,4 +1,4 @@
-var db = require('mongojs').connect('wigwamm', ['rightmoveCodes', 'landReg', 'priceBands', 'outcodes']);
+var db = require('mongojs').connect(require('../dbPath.json').url, ['rightmoveCodes', 'landReg', 'priceBands', 'outcodes']);
 var async = require('async');
 
 

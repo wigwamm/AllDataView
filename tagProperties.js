@@ -1,4 +1,4 @@
-var db = require('mongojs').connect('wigwamm', ['rightMoveProps']);
+var db = require('mongojs').connect(require('../dbPath.json').url, ['rightMoveProps']);
 var async = require('async');
 
 var tags = [{
